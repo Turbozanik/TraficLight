@@ -20,13 +20,22 @@ public class OrdinaryController extends CrossingController {
 
     @Override
     public void setConflictedLightsToAllLights() {
-        for(Road oneRoad: controlledCrossing.getAllRoads())
-            for(Road anotherRoad: controlledCrossing.getAllRoads())
-                if(!oneRoad.isOppositeRoad(anotherRoad) && oneRoad.getOrientation() != anotherRoad.getOrientation())
-                    for(Line line : oneRoad.getLines())
-                        for(Line anotherLine : anotherRoad.getLines()) {
+        for(Road oneRoad: controlledCrossing.getAllRoads()) {
+            for (Road anotherRoad : controlledCrossing.getAllRoads()) {
+                if (!oneRoad.isOppositeRoad(anotherRoad) && oneRoad.getOrientation() != anotherRoad.getOrientation()) {
+                    for (Line line : oneRoad.getLines()) {
+                        for (Line anotherLine : anotherRoad.getLines()) {
                             line.addConflictLight(anotherLine.getTrafficLight());
                         }
+                    }
+                }
+                else {
+                    for (Line line : oneRoad.getLines()) {
+                            line.addConflictLight(anotherRoad.getCrosswalk().getPedLight());
+                    }
+                }
+            }
+        }
     }
     public void playCrossing(){
 

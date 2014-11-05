@@ -10,7 +10,7 @@ import java.util.List;
 public class Road {
 
 	private List<Line> lines;
-
+private Crosswalk crosswalk;
     private RoadOrientation orientation;
 
 
@@ -39,6 +39,8 @@ public class Road {
                 (orientation == RoadOrientation.EAST && road.getOrientation() == RoadOrientation.WEST));
     }
 
+    public Crosswalk getCrosswalk(){
+        return crosswalk;
 
-
+    }
 }
